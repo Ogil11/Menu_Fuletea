@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+/* -------------------------------------------------------------
+ * Tokens de marca FULLETIAO
+ * ------------------------------------------------------------- */
+@theme {
+  --color-ink: #101010;
+  --color-ink-2: #1b1b1b;
+  --color-ink-3: #262626;
+  --color-line: #2e2e2e;
+  --color-brand: #ff7900;
+  --color-brand-strong: #ff8f26;
+  --color-brand-deep: #c25c00;
+  --color-paper: #ffffff;
+  --color-muted: #a3a3a3;
+  --color-danger: #ff5a4f;
+  --color-success: #3ddc84;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-anton), "Impact", "Arial Narrow", sans-serif;
+  --font-marker: var(--font-pm), "Comic Sans MS", cursive;
+
+  --radius-card: 1.25rem;
+
+  --shadow-glow: 0 0 0 1px rgb(255 121 0 / 0.35), 0 18px 50px -18px rgb(255 121 0 / 0.55);
+
+  --animate-marquee: marquee 38s linear infinite;
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+}
+
+:root {
+  color-scheme: dark;
+  --header-h: 4.25rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-family: var(--font-sans);
+  font-feature-settings: "tnum" 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: var(--color-ink);
+}
+
+/* Foco visible y consistente (WCAG 2.4.7) */
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+
+/* Textura de grano sutil para la estética callejera */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Números tabulares en precios */
+.price {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* Scrollbar horizontal oculto en las categorías */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Contorno para títulos tipo cartel */
+.text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgb(255 255 255 / 0.55);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
